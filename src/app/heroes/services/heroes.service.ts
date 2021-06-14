@@ -38,8 +38,8 @@ return this.http.put<Heroe>(`${ this.baseUrl }/heroes/${heroe.id}`, heroe);
   }
 
   borrarrHeroe (id:string):Observable<any>{
-
 return this.http.delete<any>(`${ this.baseUrl }/heroes/${id}`);    
+
   }
 
 }

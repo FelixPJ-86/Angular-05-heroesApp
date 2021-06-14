@@ -4,6 +4,8 @@ import { switchMap } from 'rxjs/operators';
 
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -37,7 +39,8 @@ export class AgregarComponent implements OnInit {
 
   constructor(private heroeService:HeroesService,
     private activatedRoute:ActivatedRoute,
-    private router:Router) { }
+    private router:Router,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
 
@@ -77,8 +80,22 @@ return
   }
 
   borrarHeroe(){
+  const dialog=  this.dialog.open(ConfirmarComponent,{
+      width:'250px',
+      data: this.heroe
+    });
+
+    dialog.afterClosed(). 
+    subscribe(
+      (result)=>{
+        console.log(result);
+        if(result){
     this.heroeService.borrarrHeroe(this.heroe.id!).subscribe(resp=>{
       this.router.navigate(['/heroes'])
     })
+        }
+      }
+    )
+
   }
 }
