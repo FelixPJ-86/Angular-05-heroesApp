@@ -32,7 +32,11 @@
             </mat-autocomplete>
         </mat-form-field>
 
-
-
     </div>
+
+  
+    <div *ngIf="heroeSeleccionado!=null">
+        <app-heroe-tarjeta [heroe]="heroeSeleccionado"></app-heroe-tarjeta>
+    </div>
+
 </div>
